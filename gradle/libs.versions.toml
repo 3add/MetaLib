@@ -1,0 +1,41 @@
+metadata.format.version = "1.1"
+
+[versions]
+
+# main api
+packetevents = "2.13.0"
+adventure = "4.26.1" # version supporting java 8
+fastutil = "8.5.18"
+
+# platforms
+paper = "1.16.5-R0.1-SNAPSHOT" # first paper ver introducing UnsafeValues#nextEntityId, unused if on lower versions
+velocity = "3.5.0-SNAPSHOT" # only supporting latest
+
+# code gen
+javapoet = "0.16.0"
+gson = "2.13.1"
+
+# gradle
+shadow = "9.4.2"
+
+[libraries]
+
+# main api
+packetevents-api = { group = "com.github.retrooper", name = "packetevents-api", version.ref = "packetevents" }
+packetevents-spigot = { group = "com.github.retrooper", name = "packetevents-spigot", version.ref = "packetevents" }
+packetevents-velocity = { group = "com.github.retrooper", name = "packetevents-velocity", version.ref = "packetevents" }
+adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
+fastutil = {  group = "it.unimi.dsi", name = "fastutil", version.ref = "fastutil" }
+
+# platforms
+paper-api = { group = "com.destroystokyo.paper", name = "paper-api", version.ref = "paper" }
+velocity-api = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
+
+# code gen
+javapoet = { group = "com.palantir.javapoet", name = "javapoet", version.ref = "javapoet" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+[plugins]
+
+# gradle
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
