@@ -38,14 +38,15 @@ tasks {
     }
 }
 ```
-### maven
+### Maven xml
 TODO
 ### 2. Setup the api
 Choose a platform (The example uses paper, but other platforms have similar setups)
 ```java
 // in YourPlugin.java
 
-@Ovveride void onEnable() {
+@Ovveride
+void onEnable() {
     MetaLibAPISettings settings = new MetaLibAPISettings();
     PaperMetaLibPlatform platform = new PaperMetaLibPlatform(this, settings);
     MetaLib.init(platform);
