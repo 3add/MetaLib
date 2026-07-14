@@ -45,7 +45,7 @@ Choose a platform (The example uses paper, but other platforms have similar setu
 ```java
 // in YourPlugin.java
 
-@Ovveride
+@Override
 void onEnable() {
     MetaLibAPISettings settings = new MetaLibAPISettings();
     PaperMetaLibPlatform platform = new PaperMetaLibPlatform(this, settings);
