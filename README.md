@@ -14,7 +14,6 @@ spawn packets, and entity tracking seamlessly across **Minecraft 1.14.4 through 
 ## Getting Started
 
 ### 1. Add Dependencies
-
 First, ensure you have **PacketEvents** shaded or installed on your platform. Then, 
 add MetaLib to your build system and relocate it to avoid conflicts with other plugins:
 #### Gradle kotlin dsl
@@ -38,9 +37,9 @@ tasks {
         relocate("dev.threeadd.metalib.", "dev.threeadd.metalibtest.metalib.")
     }
 }
+```
 ### maven
 TODO
-```
 ### 2. Setup the api
 Choose a platform (The example uses paper, but other platforms have similar setups)
 ```java
@@ -62,8 +61,8 @@ Location loc = /*...*/;
 UUID uuid = UUID.randomUUID();
 ProtocolEntity entity = ProtocolEntity.builder()
     .entityType(EntityTypes.PLAYER)
-    .extensions(extensions ->
-            extensions.extension(new PlayerExtension(
+    .extensions(extensions -> extensions
+            .extension(new PlayerExtension(
                     new UserProfile(uuid, "notch"),
                     GameMode.CREATIVE,
                     67,
