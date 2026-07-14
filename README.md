@@ -97,3 +97,6 @@ int entityId = /*...*/;
 ClientVersion version = PacketEvents.getAPI().getServerManager().getVersion().toClientVersion();
 WrapperPlayServerEntityMetadata metadataPacket = metadata.createPacket(entityId, version);
 ```
+
+## Credits
+During this project, [EntityLib](https://github.com/Tofaa2/EntityLib) was used a base to start development from, though MetaLib was built from scratch.
