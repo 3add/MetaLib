@@ -669,17 +669,18 @@ public class ProtocolEntity {
     public String toString() {
         EntityWorldState current = this.worldStateManager.getWorldState();
         return String.format(
-                "ProtocolEntity{\n" +
-                        "entityId=%s,\n" +
-                        "entityType=%s,\n" +
-                        "uuid=%s,\n" +
-                        "isSpawned=%s,\n" +
-                        "positionData=%s,\n" +
-                        "viewerCount=%d,\n" +
-                        "extensions=%s,\n" +
-                        "meta=%s,\n" +
-                        "attributesCount=%s\n" +
-                        "}",
+                """
+                        ProtocolEntity{
+                        entityId=%s,
+                        entityType=%s,
+                        uuid=%s,
+                        isSpawned=%s,
+                        positionData=%s,
+                        viewerCount=%d,
+                        extensions=%s,
+                        meta=%s,
+                        attributesCount=%s
+                        }""",
                 this.entityId,
                 this.entityType.getName().getKey(),
                 this.uuid,

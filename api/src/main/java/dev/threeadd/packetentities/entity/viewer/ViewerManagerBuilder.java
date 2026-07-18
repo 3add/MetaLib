@@ -59,56 +59,11 @@ public class ViewerManagerBuilder {
         return manager;
     }
 
-    static final class TriggerConfig<T extends Event> {
-
-        private final EventBus bus;
-        private final Class<T> eventClass;
-        private final Function<T, Collection<User>> userExtractor;
-
-        public TriggerConfig(EventBus bus, Class<T> eventClass, Function<T, Collection<User>> userExtractor) {
-            this.bus = bus;
-            this.eventClass = eventClass;
-            this.userExtractor = userExtractor;
-        }
-
-        public EventBus bus() {
-            return this.bus;
-        }
-
-        public Class<T> eventClass() {
-            return this.eventClass;
-        }
-
-        public Function<T, Collection<User>> userExtractor() {
-            return this.userExtractor;
-        }
+    private record TriggerConfig<T extends Event>(EventBus bus, Class<T> eventClass,
+                                                  Function<T, Collection<User>> userExtractor) {
 
         void registerTo(ViewerManager manager) {
-            manager.addUpdateTrigger(this.bus, this.eventClass, this.userExtractor);
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            TriggerConfig<?> that = (TriggerConfig<?>) o;
-            return Objects.equals(this.bus, that.bus) &&
-                    Objects.equals(this.eventClass, that.eventClass) &&
-                    Objects.equals(this.userExtractor, that.userExtractor);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(this.bus, this.eventClass, this.userExtractor);
-        }
-
-        @Override
-        public String toString() {
-            return "TriggerConfig[" +
-                    "bus=" + this.bus + ", " +
-                    "eventClass=" + this.eventClass + ", " +
-                    "userExtractor=" + this.userExtractor +
-                    ']';
+                manager.addUpdateTrigger(this.bus, this.eventClass, this.userExtractor);
         }
 
     }
