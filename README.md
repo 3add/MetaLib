@@ -2,14 +2,14 @@
 
 [![Platforms](https://img.shields.io/badge/platforms-Paper%20%7C%20Velocity-00bcd4.svg)](#)
 [![PacketEvents](https://img.shields.io/badge/dependency-PacketEvents-ff6f00.svg)](https://github.com/retrooper/packetevents)
-[![Minecraft Versions](https://img.shields.io/badge/minecraft%20versions-1.14.4%2B-brightgreen.svg)](#)
+[![Minecraft Versions](https://img.shields.io/badge/minecraft%20versions-1.9.4%2B-brightgreen.svg)](#)
 
 **PacketEntities** is a high-performance, developer library designed to abstract Minecraft's protocol-level entity system.
 Built on top of **PacketEvents**, it allows you to easily create, control, and manipulate packet-based entities without the overhead of heavy server-side entities.
 
 Whether you are targeting backend game servers or proxy-side systems,
 PacketEntities handles the heavy lifting of version-agnostic metadata/object data,
-spawn packets, and entity tracking seamlessly across **Minecraft 1.14.4 through the latest versions**.
+spawn packets, and entity tracking seamlessly across **Minecraft 1.9.4 through the latest versions**.
 
 ## Getting Started
 
