@@ -24,7 +24,6 @@ dependencies {
     implementation(libs.adventure.api)
     implementation(libs.gson)
     implementation(libs.javapoet)
-    implementation(libs.viaversion.api)
 }
 
 tasks {
