@@ -1,8 +1,8 @@
 package dev.threeadd.packetentities.meta;
 
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityType;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEntityMetadata;
 import dev.threeadd.packetentities.meta.field.IEntityMetaFieldHolder;
 import dev.threeadd.packetentities.meta.field.EntityMetaField;
@@ -22,7 +22,7 @@ public final class EntityMetaSchema {
     /**
      * version specific index ordered properties cache for faster lookups
      */
-    private final Map<ClientVersion, EntityMetaField<?>[]> versionCache = new ConcurrentHashMap<>();
+    private final Map<ServerVersion, EntityMetaField<?>[]> versionCache = new ConcurrentHashMap<>();
     private final Set<EntityMetaField<?>> properties;
     /**
      * highest metadata index of all properties stored or -1 if none of the properties have a version defined
@@ -42,7 +42,7 @@ public final class EntityMetaSchema {
     /**
      * builds {@link #versionCache}, a version specific index ordered properties cache
      */
-    private EntityMetaField<?>[] getOrBuildCache(ClientVersion version) {
+    private EntityMetaField<?>[] getOrBuildCache(ServerVersion version) {
         return this.versionCache.computeIfAbsent(version, v -> {
             EntityMetaField<?>[] lookup = new EntityMetaField<?>[this.maxKnownIndex + 1];
             for (EntityMetaField<?> prop : this.properties) {
@@ -56,7 +56,7 @@ public final class EntityMetaSchema {
     }
 
     @SuppressWarnings("ConstantConditions")
-    void applyPacketToStore(WrapperPlayServerEntityMetadata packet, ProtocolEntityMeta store, ClientVersion version) {
+    void applyPacketToStore(WrapperPlayServerEntityMetadata packet, ProtocolEntityMeta store, ServerVersion version) {
         EntityMetaField<?>[] fastLookup = getOrBuildCache(version);
 
         for (EntityData<?> data : packet.getEntityMetadata()) {

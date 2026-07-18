@@ -3,7 +3,6 @@ package dev.threeadd.packetentities.entity;
 import com.github.retrooper.packetevents.manager.server.ServerManager;
 import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityType;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.protocol.world.Location;
 import com.github.retrooper.packetevents.util.Vector3d;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerUpdateAttributes;
@@ -35,7 +34,7 @@ public class ProtocolEntityBuilder {
     @Nullable UUID uuid;
     @Nullable ProtocolObjectData protocolObjectData;
     @Nullable ProtocolEntityMeta meta;
-    @Nullable ClientVersion metaDataVersion;
+    @Nullable ServerVersion metaDataVersion;
 
     // world state
     @UnknownNullability Location location; // set on build
@@ -149,10 +148,10 @@ public class ProtocolEntityBuilder {
 
     /**
      * @param version the version for the entity metadata to be encoded with, if null,
-     *                this will default to {@link ServerManager#getVersion()} (then {@link ServerVersion#toClientVersion()})
+     *                this will default to {@link ServerManager#getVersion()}
      * @return this builder for chaining
      */
-    public ProtocolEntityBuilder version(@Nullable ClientVersion version) {
+    public ProtocolEntityBuilder version(@Nullable ServerVersion version) {
         this.metaDataVersion = version;
         return this;
     }

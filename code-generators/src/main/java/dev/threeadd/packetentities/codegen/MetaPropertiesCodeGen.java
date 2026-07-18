@@ -1,23 +1,22 @@
 package dev.threeadd.packetentities.codegen;
 
 import com.palantir.javapoet.JavaFile;
-import dev.threeadd.packetentities.codegen.data.MetadataNode;
-import dev.threeadd.packetentities.codegen.data.fetch.MetaDataFetcher;
+import dev.threeadd.packetentities.codegen.data.EntityMetaNode;
+import dev.threeadd.packetentities.codegen.data.fetch.EntityMetaFetcher;
 import dev.threeadd.packetentities.codegen.data.mapping.DataTypeMapper;
 import dev.threeadd.packetentities.codegen.generator.JavadocGenerator;
 import dev.threeadd.packetentities.codegen.generator.MetaFieldClassGenerator;
 import dev.threeadd.packetentities.codegen.generator.SchemaRegistryGenerator;
 
 import java.io.IOException;
-import java.net.http.HttpClient;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class MetaPropertiesCodeGen {
 
-    public static final String VERSIONS_URL = "https://kennytv.eu/entity-data/versions.json";
-    public static final String DATA_URL_FORMAT = "https://kennytv.eu/entity-data/%s.json";
+    public static final String VERSIONS_PATH = "/entity-data/versions.json";
+    public static final String DATA_PATH_FORMAT = "/entity-data/%s.json";
     private static final Set<String> EXCLUDED_VERSIONS = Set.of();
 
     public static final Comparator<String> VERSION_COMPARATOR = (v1, v2) -> {
@@ -44,18 +43,18 @@ public class MetaPropertiesCodeGen {
         DiskOutputWriter outputWriter = new DiskOutputWriter(baseDir);
         DataTypeMapper mapper = new DataTypeMapper();
 
-        try (HttpClient client = HttpClient.newHttpClient()) {
-            MetaDataFetcher fetcher = new MetaDataFetcher(VERSIONS_URL, DATA_URL_FORMAT, EXCLUDED_VERSIONS);
+        try {
+            EntityMetaFetcher fetcher = new EntityMetaFetcher(VERSIONS_PATH, DATA_PATH_FORMAT, EXCLUDED_VERSIONS);
 
-            List<String> fullVersions = fetcher.fetchVersions(client);
+            List<String> fullVersions = fetcher.fetchVersions();
             fullVersions.sort(VERSION_COMPARATOR);
 
-            Map<String, MetadataNode> metas = fetcher.fetchAndAggregateMetas(client, fullVersions, mapper);
+            Map<String, EntityMetaNode> metas = fetcher.fetchAndAggregateMetas(fullVersions);
 
             JavadocGenerator javadocGenerator = new JavadocGenerator(fullVersions);
             MetaFieldClassGenerator classGenerator = new MetaFieldClassGenerator(mapper, javadocGenerator);
 
-            List<MetadataNode> sortedEntities = getTopologicallySortedEntities(metas);
+            List<EntityMetaNode> sortedEntities = getTopologicallySortedEntities(metas);
 
             System.out.println("Generating unified class file with nested inner classes...");
             try {
@@ -72,13 +71,13 @@ public class MetaPropertiesCodeGen {
 
             System.out.println("All meta properties generated cleanly.");
 
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             throw new IllegalStateException("Something failed whilst trying to generate the classes", e);
         }
     }
 
-    private static List<MetadataNode> getTopologicallySortedEntities(Map<String, MetadataNode> aggregatedEntities) {
-        List<MetadataNode> sortedResult = new ArrayList<>();
+    private static List<EntityMetaNode> getTopologicallySortedEntities(Map<String, EntityMetaNode> aggregatedEntities) {
+        List<EntityMetaNode> sortedResult = new ArrayList<>();
         Set<String> visited = new HashSet<>();
 
         List<String> sortedKeys = aggregatedEntities.keySet().stream().sorted().toList();
@@ -90,10 +89,10 @@ public class MetaPropertiesCodeGen {
         return sortedResult;
     }
 
-    private static void visitNode(String className, Map<String, MetadataNode> map, Set<String> visited, List<MetadataNode> result) {
+    private static void visitNode(String className, Map<String, EntityMetaNode> map, Set<String> visited, List<EntityMetaNode> result) {
         if (className == null || visited.contains(className)) return;
 
-        MetadataNode node = map.get(className);
+        EntityMetaNode node = map.get(className);
         if (node == null) return;
 
         if (node.getSuperClassName() != null) {

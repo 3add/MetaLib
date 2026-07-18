@@ -1,8 +1,8 @@
 package dev.threeadd.packetentities.meta.field;
 
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityDataType;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -23,15 +23,15 @@ import java.util.function.Function;
  */
 public abstract class EntityMetaField<T> {
 
-    private final NavigableMap<ClientVersion, VersionedMapping<T, ?>> versions;
+    private final NavigableMap<ServerVersion, VersionedMapping<T, ?>> versions;
 
-    protected EntityMetaField(NavigableMap<ClientVersion, VersionedMapping<T, ?>> versions) {
+    protected EntityMetaField(NavigableMap<ServerVersion, VersionedMapping<T, ?>> versions) {
         this.versions = versions;
     }
 
-    public int getIndex(@Nullable ClientVersion version) {
+    public int getIndex(@Nullable ServerVersion version) {
         if (version == null) return -1;
-        Map.Entry<ClientVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
+        Map.Entry<ServerVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
         if (entry != null && version.compareTo(entry.getValue().end) <= 0) {
             return entry.getValue().index;
         }
@@ -53,25 +53,25 @@ public abstract class EntityMetaField<T> {
         return max;
     }
 
-    public @Nullable EntityDataType<?> getDataType(@Nullable ClientVersion version) {
+    public @Nullable EntityDataType<?> getDataType(@Nullable ServerVersion version) {
         if (version == null) return null;
-        Map.Entry<ClientVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
+        Map.Entry<ServerVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
         if (entry != null && version.compareTo(entry.getValue().end) <= 0) {
             return entry.getValue().type;
         }
         return null;
     }
 
-    public @Nullable T parse(@Nullable ClientVersion version, @Nullable EntityData<?> data) {
+    public @Nullable T parse(@Nullable ServerVersion version, @Nullable EntityData<?> data) {
         if (data == null || version == null) return null;
-        Map.Entry<ClientVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
+        Map.Entry<ServerVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
         if (entry == null || version.compareTo(entry.getValue().end) > 0) return null;
         return entry.getValue().deserialize(data.getValue());
     }
 
-    public @Nullable EntityData<?> createData(@Nullable ClientVersion version, T rawValue) {
+    public @Nullable EntityData<?> createData(@Nullable ServerVersion version, T rawValue) {
         if (version == null) return null;
-        Map.Entry<ClientVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
+        Map.Entry<ServerVersion, VersionedMapping<T, ?>> entry = this.versions.floorEntry(version);
         if (entry == null || version.compareTo(entry.getValue().end) > 0) return null;
         return entry.getValue().createData(rawValue);
     }
@@ -92,19 +92,19 @@ public abstract class EntityMetaField<T> {
      */
     public abstract static class BaseBuilder<T, B extends BaseBuilder<T, B>> {
 
-        protected final NavigableMap<ClientVersion, VersionedMapping<T, ?>> versions = new TreeMap<>();
+        protected final NavigableMap<ServerVersion, VersionedMapping<T, ?>> versions = new TreeMap<>();
 
         @SuppressWarnings("unchecked")
         protected final B self() {
             return (B) this;
         }
 
-        public B addVersionRange(ClientVersion start, ClientVersion end, int index, EntityDataType<T> type) {
+        public B addVersionRange(ServerVersion start, ServerVersion end, int index, EntityDataType<T> type) {
             this.versions.put(start, new VersionedMapping<>(end, index, type, Function.identity(), Function.identity()));
             return self();
         }
 
-        public <N> B addVersionRange(ClientVersion start, ClientVersion end, int index, EntityDataType<N> type, Function<T, N> serializer, Function<N, T> deserializer) {
+        public <N> B addVersionRange(ServerVersion start, ServerVersion end, int index, EntityDataType<N> type, Function<T, N> serializer, Function<N, T> deserializer) {
             this.versions.put(start, new VersionedMapping<>(end, index, type, serializer, deserializer));
             return self();
         }
@@ -115,13 +115,13 @@ public abstract class EntityMetaField<T> {
 
     protected static class VersionedMapping<T, P> {
 
-        final ClientVersion end;
+        final ServerVersion end;
         final int index;
         final EntityDataType<P> type;
         private final Function<T, P> serializer;
         private final Function<P, T> deserializer;
 
-        VersionedMapping(ClientVersion end, int index, EntityDataType<P> type, Function<T, P> serializer, Function<P, T> deserializer) {
+        VersionedMapping(ServerVersion end, int index, EntityDataType<P> type, Function<T, P> serializer, Function<P, T> deserializer) {
             this.end = end;
             this.index = index;
             this.type = type;

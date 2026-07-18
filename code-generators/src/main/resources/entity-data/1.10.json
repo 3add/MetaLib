@@ -1,0 +1,930 @@
+{
+  "Entity": {
+    "superClass": null,
+    "fields": [
+      {
+        "index": 0,
+        "dataType": "Byte",
+        "fieldName": "FLAGS",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 1,
+        "dataType": "Integer",
+        "fieldName": "AIR",
+        "defaultValue": "Integer.valueOf(300)"
+      },
+      {
+        "index": 2,
+        "dataType": "String",
+        "fieldName": "CUSTOM_NAME",
+        "defaultValue": "\"\""
+      },
+      {
+        "index": 3,
+        "dataType": "Boolean",
+        "fieldName": "CUSTOM_NAME_VISIBLE",
+        "defaultValue": "Boolean.valueOf(false)"
+      },
+      {
+        "index": 4,
+        "dataType": "Boolean",
+        "fieldName": "SILENT",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Area Effect Cloud": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Float",
+        "fieldName": "RADIUS"
+      },
+      {
+        "index": 6,
+        "dataType": "Integer",
+        "fieldName": "COLOR"
+      },
+      {
+        "index": 7,
+        "dataType": "Boolean",
+        "fieldName": "IGNORE_RADIUS"
+      },
+      {
+        "index": 8,
+        "dataType": "Integer",
+        "fieldName": "PARTICLE"
+      }
+    ]
+  },
+  "Entity Arrow": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Byte",
+        "fieldName": "CRITICAL",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Boat": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Integer",
+        "fieldName": "TIME_SINCE_HIT",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 6,
+        "dataType": "Integer",
+        "fieldName": "FORWARD_DIRECTION",
+        "defaultValue": "Integer.valueOf(1)"
+      },
+      {
+        "index": 7,
+        "dataType": "Float",
+        "fieldName": "DAMAGE_TAKEN",
+        "defaultValue": "Float.valueOf(0.0F)"
+      },
+      {
+        "index": 8,
+        "dataType": "Integer",
+        "fieldName": "BOAT_TYPE",
+        "defaultValue": "Integer.valueOf(EntityBoat.Type.OAK.ordinal())"
+      }
+    ]
+  },
+  "Entity Dragon Part": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Ender Crystal": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Boolean",
+        "fieldName": "SHOW_BOTTOM"
+      }
+    ]
+  },
+  "Entity Ender Eye": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Falling Block": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "BlockPos",
+        "fieldName": "ORIGIN",
+        "defaultValue": "BlockPos.ORIGIN"
+      }
+    ]
+  },
+  "Entity Fireball": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Firework Rocket": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Fish Hook": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Integer",
+        "fieldName": "HOOKED_ENTITY"
+      }
+    ]
+  },
+  "Entity Hanging": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Item": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Living Base": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Byte",
+        "fieldName": "HAND_STATES",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 6,
+        "dataType": "Float",
+        "fieldName": "HEALTH",
+        "defaultValue": "Float.valueOf(1.0F)"
+      },
+      {
+        "index": 7,
+        "dataType": "Integer",
+        "fieldName": "POTION_EFFECTS",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 8,
+        "dataType": "Boolean",
+        "fieldName": "HIDE_PARTICLES",
+        "defaultValue": "Boolean.valueOf(false)"
+      },
+      {
+        "index": 9,
+        "dataType": "Integer",
+        "fieldName": "ARROW_COUNT_IN_ENTITY",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Minecart": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Integer",
+        "fieldName": "ROLLING_AMPLITUDE",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 6,
+        "dataType": "Integer",
+        "fieldName": "ROLLING_DIRECTION",
+        "defaultValue": "Integer.valueOf(1)"
+      },
+      {
+        "index": 7,
+        "dataType": "Float",
+        "fieldName": "DAMAGE",
+        "defaultValue": "Float.valueOf(0.0F)"
+      },
+      {
+        "index": 8,
+        "dataType": "Integer",
+        "fieldName": "DISPLAY_TILE",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 9,
+        "dataType": "Integer",
+        "fieldName": "DISPLAY_TILE_OFFSET",
+        "defaultValue": "Integer.valueOf(6)"
+      },
+      {
+        "index": 10,
+        "dataType": "Boolean",
+        "fieldName": "SHOW_BLOCK",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Shulker Bullet": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity TNTPrimed": {
+    "superClass": "Entity",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Integer",
+        "fieldName": "FUSE",
+        "defaultValue": "Integer.valueOf(80)"
+      }
+    ]
+  },
+  "Entity Throwable": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Weather Effect": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity XPOrb": {
+    "superClass": "Entity",
+    "fields": []
+  },
+  "Entity Armor Stand": {
+    "superClass": "Entity Living Base",
+    "fields": [
+      {
+        "index": 10,
+        "dataType": "Byte",
+        "fieldName": "STATUS",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 11,
+        "dataType": "Rotations",
+        "fieldName": "HEAD_ROTATION",
+        "defaultValue": "DEFAULT_HEAD_ROTATION"
+      },
+      {
+        "index": 12,
+        "dataType": "Rotations",
+        "fieldName": "BODY_ROTATION",
+        "defaultValue": "DEFAULT_BODY_ROTATION"
+      },
+      {
+        "index": 13,
+        "dataType": "Rotations",
+        "fieldName": "LEFT_ARM_ROTATION",
+        "defaultValue": "DEFAULT_LEFTARM_ROTATION"
+      },
+      {
+        "index": 14,
+        "dataType": "Rotations",
+        "fieldName": "RIGHT_ARM_ROTATION",
+        "defaultValue": "DEFAULT_RIGHTARM_ROTATION"
+      },
+      {
+        "index": 15,
+        "dataType": "Rotations",
+        "fieldName": "LEFT_LEG_ROTATION",
+        "defaultValue": "DEFAULT_LEFTLEG_ROTATION"
+      },
+      {
+        "index": 16,
+        "dataType": "Rotations",
+        "fieldName": "RIGHT_LEG_ROTATION",
+        "defaultValue": "DEFAULT_RIGHTLEG_ROTATION"
+      }
+    ]
+  },
+  "Entity Dragon Fireball": {
+    "superClass": "Entity Fireball",
+    "fields": []
+  },
+  "Entity Egg": {
+    "superClass": "Entity Throwable",
+    "fields": []
+  },
+  "Entity Ender Pearl": {
+    "superClass": "Entity Throwable",
+    "fields": []
+  },
+  "Entity Exp Bottle": {
+    "superClass": "Entity Throwable",
+    "fields": []
+  },
+  "Entity Item Frame": {
+    "superClass": "Entity Hanging",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Integer",
+        "fieldName": "ROTATION"
+      }
+    ]
+  },
+  "Entity Large Fireball": {
+    "superClass": "Entity Fireball",
+    "fields": []
+  },
+  "Entity Leash Knot": {
+    "superClass": "Entity Hanging",
+    "fields": []
+  },
+  "Entity Lightning Bolt": {
+    "superClass": "Entity Weather Effect",
+    "fields": []
+  },
+  "Entity Living": {
+    "superClass": "Entity Living Base",
+    "fields": [
+      {
+        "index": 10,
+        "dataType": "Byte",
+        "fieldName": "AI_FLAGS",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Minecart Command Block": {
+    "superClass": "Entity Minecart",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "String",
+        "fieldName": "COMMAND"
+      },
+      {
+        "index": 12,
+        "dataType": "ITextComponent",
+        "fieldName": "LAST_OUTPUT"
+      }
+    ]
+  },
+  "Entity Minecart Container": {
+    "superClass": "Entity Minecart",
+    "fields": []
+  },
+  "Entity Minecart Empty": {
+    "superClass": "Entity Minecart",
+    "fields": []
+  },
+  "Entity Minecart Furnace": {
+    "superClass": "Entity Minecart",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "POWERED",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Minecart Mob Spawner": {
+    "superClass": "Entity Minecart",
+    "fields": []
+  },
+  "Entity Minecart TNT": {
+    "superClass": "Entity Minecart",
+    "fields": []
+  },
+  "Entity Painting": {
+    "superClass": "Entity Hanging",
+    "fields": []
+  },
+  "Entity Player": {
+    "superClass": "Entity Living Base",
+    "fields": [
+      {
+        "index": 10,
+        "dataType": "Float",
+        "fieldName": "ABSORPTION",
+        "defaultValue": "Float.valueOf(0.0F)"
+      },
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "PLAYER_SCORE",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 12,
+        "dataType": "Byte",
+        "fieldName": "PLAYER_MODEL_FLAG",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 13,
+        "dataType": "Byte",
+        "fieldName": "MAIN_HAND",
+        "defaultValue": "Byte.valueOf((byte)1)"
+      }
+    ]
+  },
+  "Entity Potion": {
+    "superClass": "Entity Throwable",
+    "fields": []
+  },
+  "Entity Small Fireball": {
+    "superClass": "Entity Fireball",
+    "fields": []
+  },
+  "Entity Snowball": {
+    "superClass": "Entity Throwable",
+    "fields": []
+  },
+  "Entity Spectral Arrow": {
+    "superClass": "Entity Arrow",
+    "fields": []
+  },
+  "Entity Tipped Arrow": {
+    "superClass": "Entity Arrow",
+    "fields": [
+      {
+        "index": 6,
+        "dataType": "Integer",
+        "fieldName": "COLOR",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Wither Skull": {
+    "superClass": "Entity Fireball",
+    "fields": [
+      {
+        "index": 5,
+        "dataType": "Boolean",
+        "fieldName": "INVULNERABLE",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Abstract Client Player": {
+    "superClass": "Entity Player",
+    "fields": []
+  },
+  "Entity Ambient Creature": {
+    "superClass": "Entity Living",
+    "fields": []
+  },
+  "Entity Creature": {
+    "superClass": "Entity Living",
+    "fields": []
+  },
+  "Entity Dragon": {
+    "superClass": "Entity Living",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "PHASE"
+      }
+    ]
+  },
+  "Entity Flying": {
+    "superClass": "Entity Living",
+    "fields": []
+  },
+  "Entity Minecart Chest": {
+    "superClass": "Entity Minecart Container",
+    "fields": []
+  },
+  "Entity Minecart Hopper": {
+    "superClass": "Entity Minecart Container",
+    "fields": []
+  },
+  "Entity Player MP": {
+    "superClass": "Entity Player",
+    "fields": []
+  },
+  "Entity Slime": {
+    "superClass": "Entity Living",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "SLIME_SIZE",
+        "defaultValue": "Integer.valueOf(1)"
+      }
+    ]
+  },
+  "Entity Water Mob": {
+    "superClass": "Entity Living",
+    "fields": []
+  },
+  "Entity Ageable": {
+    "superClass": "Entity Creature",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "BABY",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Bat": {
+    "superClass": "Entity Ambient Creature",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "HANGING",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Ghast": {
+    "superClass": "Entity Flying",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "ATTACKING",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Golem": {
+    "superClass": "Entity Creature",
+    "fields": []
+  },
+  "Entity Magma Cube": {
+    "superClass": "Entity Slime",
+    "fields": []
+  },
+  "Entity Mob": {
+    "superClass": "Entity Creature",
+    "fields": []
+  },
+  "Entity Other Player MP": {
+    "superClass": "Abstract Client Player",
+    "fields": []
+  },
+  "Entity Player SP": {
+    "superClass": "Abstract Client Player",
+    "fields": []
+  },
+  "Entity Squid": {
+    "superClass": "Entity Water Mob",
+    "fields": []
+  },
+  "Entity Animal": {
+    "superClass": "Entity Ageable",
+    "fields": []
+  },
+  "Entity Blaze": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "ON_FIRE",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Creeper": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "STATE",
+        "defaultValue": "Integer.valueOf(-1)"
+      },
+      {
+        "index": 12,
+        "dataType": "Boolean",
+        "fieldName": "POWERED",
+        "defaultValue": "Boolean.valueOf(false)"
+      },
+      {
+        "index": 13,
+        "dataType": "Boolean",
+        "fieldName": "IGNITED",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Enderman": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "SCREAMING",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Endermite": {
+    "superClass": "Entity Mob",
+    "fields": []
+  },
+  "Entity Giant Zombie": {
+    "superClass": "Entity Mob",
+    "fields": []
+  },
+  "Entity Guardian": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "STATUS",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 12,
+        "dataType": "Integer",
+        "fieldName": "TARGET_ENTITY",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Iron Golem": {
+    "superClass": "Entity Golem",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "PLAYER_CREATED",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Shulker": {
+    "superClass": "Entity Golem",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "EnumFacing",
+        "fieldName": "ATTACHED_FACE",
+        "defaultValue": "EnumFacing.DOWN"
+      },
+      {
+        "index": 12,
+        "dataType": "Byte",
+        "fieldName": "PEEK_TICK",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Silverfish": {
+    "superClass": "Entity Mob",
+    "fields": []
+  },
+  "Entity Skeleton": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "SKELETON_VARIANT",
+        "defaultValue": "Integer.valueOf(SkeletonType.NORMAL.func_190135_a())"
+      },
+      {
+        "index": 12,
+        "dataType": "Boolean",
+        "fieldName": "SWINGING_ARMS",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Snowman": {
+    "superClass": "Entity Golem",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "PUMPKIN_EQUIPPED",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Spider": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Byte",
+        "fieldName": "CLIMBING",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Villager": {
+    "superClass": "Entity Ageable",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Integer",
+        "fieldName": "PROFESSION",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Witch": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "IS_AGGRESSIVE"
+      }
+    ]
+  },
+  "Entity Wither": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Integer",
+        "fieldName": "FIRST_HEAD_TARGET",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 12,
+        "dataType": "Integer",
+        "fieldName": "SECOND_HEAD_TARGET",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 13,
+        "dataType": "Integer",
+        "fieldName": "THIRD_HEAD_TARGET",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 14,
+        "dataType": "Integer",
+        "fieldName": "INVULNERABILITY_TIME",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Zombie": {
+    "superClass": "Entity Mob",
+    "fields": [
+      {
+        "index": 11,
+        "dataType": "Boolean",
+        "fieldName": "IS_CHILD"
+      },
+      {
+        "index": 12,
+        "dataType": "Integer",
+        "fieldName": "VILLAGER_TYPE"
+      },
+      {
+        "index": 13,
+        "dataType": "Boolean",
+        "fieldName": "CONVERTING"
+      },
+      {
+        "index": 14,
+        "dataType": "Boolean",
+        "fieldName": "ARMS_RAISED"
+      }
+    ]
+  },
+  "Entity Cave Spider": {
+    "superClass": "Entity Spider",
+    "fields": []
+  },
+  "Entity Chicken": {
+    "superClass": "Entity Animal",
+    "fields": []
+  },
+  "Entity Cow": {
+    "superClass": "Entity Animal",
+    "fields": []
+  },
+  "Entity Horse": {
+    "superClass": "Entity Animal",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Byte",
+        "fieldName": "STATUS",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      },
+      {
+        "index": 13,
+        "dataType": "Integer",
+        "fieldName": "HORSE_TYPE",
+        "defaultValue": "Integer.valueOf(HorseType.HORSE.getOrdinal())"
+      },
+      {
+        "index": 14,
+        "dataType": "Integer",
+        "fieldName": "HORSE_VARIANT",
+        "defaultValue": "Integer.valueOf(0)"
+      },
+      {
+        "index": 15,
+        "dataType": "Integer",
+        "fieldName": "HORSE_ARMOR",
+        "defaultValue": "Integer.valueOf(HorseArmorType.NONE.getOrdinal())"
+      }
+    ]
+  },
+  "Entity Pig": {
+    "superClass": "Entity Animal",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Boolean",
+        "fieldName": "SADDLED",
+        "defaultValue": "Boolean.valueOf(false)"
+      }
+    ]
+  },
+  "Entity Pig Zombie": {
+    "superClass": "Entity Zombie",
+    "fields": []
+  },
+  "Entity Polar Bear": {
+    "superClass": "Entity Animal",
+    "fields": []
+  },
+  "Entity Rabbit": {
+    "superClass": "Entity Animal",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Integer",
+        "fieldName": "RABBIT_TYPE",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Sheep": {
+    "superClass": "Entity Animal",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Byte",
+        "fieldName": "DYE_COLOR",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Tameable": {
+    "superClass": "Entity Animal",
+    "fields": [
+      {
+        "index": 12,
+        "dataType": "Byte",
+        "fieldName": "TAMED",
+        "defaultValue": "Byte.valueOf((byte)0)"
+      }
+    ]
+  },
+  "Entity Mooshroom": {
+    "superClass": "Entity Cow",
+    "fields": []
+  },
+  "Entity Ocelot": {
+    "superClass": "Entity Tameable",
+    "fields": [
+      {
+        "index": 13,
+        "dataType": "Integer",
+        "fieldName": "OCELOT_VARIANT",
+        "defaultValue": "Integer.valueOf(0)"
+      }
+    ]
+  },
+  "Entity Wolf": {
+    "superClass": "Entity Tameable",
+    "fields": [
+      {
+        "index": 13,
+        "dataType": "Float",
+        "fieldName": "HEALTH",
+        "defaultValue": "Float.valueOf(this.getHealth())"
+      },
+      {
+        "index": 14,
+        "dataType": "Boolean",
+        "fieldName": "BEGGING",
+        "defaultValue": "Boolean.valueOf(false)"
+      },
+      {
+        "index": 15,
+        "dataType": "Integer",
+        "fieldName": "COLLAR_COLOR",
+        "defaultValue": "Integer.valueOf(EnumDyeColor.RED.getDyeDamage())"
+      }
+    ]
+  }
+}

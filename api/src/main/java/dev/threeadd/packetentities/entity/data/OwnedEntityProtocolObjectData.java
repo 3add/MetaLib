@@ -1,7 +1,7 @@
 package dev.threeadd.packetentities.entity.data;
 
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityType;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 
 public abstract class OwnedEntityProtocolObjectData implements ProtocolObjectData {
 
@@ -14,7 +14,7 @@ public abstract class OwnedEntityProtocolObjectData implements ProtocolObjectDat
     }
 
     @Override
-    public int getObjectData(ClientVersion version) {
+    public int getObjectData(ServerVersion version) {
         return this.objectData;
     }
 

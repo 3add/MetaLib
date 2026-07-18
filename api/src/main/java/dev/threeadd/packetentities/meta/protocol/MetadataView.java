@@ -1,7 +1,7 @@
 package dev.threeadd.packetentities.meta.protocol;
 
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import dev.threeadd.packetentities.meta.ProtocolEntityMeta;
 import dev.threeadd.packetentities.meta.field.ViewField;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +41,7 @@ public abstract class MetadataView<T> {
         this.store.setRaw(this.field, raw);
     }
 
-    public @Nullable EntityData<?> toEntityData(ClientVersion version) {
+    public @Nullable EntityData<?> toEntityData(ServerVersion version) {
         return this.field.createData(version, getRaw());
     }
 

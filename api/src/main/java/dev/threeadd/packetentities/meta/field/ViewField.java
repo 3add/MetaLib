@@ -1,6 +1,6 @@
 package dev.threeadd.packetentities.meta.field;
 
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import dev.threeadd.packetentities.meta.ProtocolEntityMeta;
 import dev.threeadd.packetentities.meta.protocol.MetadataView;
 
@@ -18,7 +18,7 @@ public final class ViewField<T, V extends MetadataView<T>> extends EntityMetaFie
 
     private final Function<ProtocolEntityMeta, V> viewFactory;
 
-    private ViewField(NavigableMap<ClientVersion, VersionedMapping<T, ?>> versions, Function<ProtocolEntityMeta, V> viewFactory) {
+    private ViewField(NavigableMap<ServerVersion, VersionedMapping<T, ?>> versions, Function<ProtocolEntityMeta, V> viewFactory) {
         super(versions);
         this.viewFactory = viewFactory;
     }

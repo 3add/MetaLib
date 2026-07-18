@@ -1,6 +1,6 @@
 package dev.threeadd.packetentities.meta.field;
 
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 
 import java.util.NavigableMap;
 
@@ -12,7 +12,7 @@ import java.util.NavigableMap;
  */
 public class SimpleField<T> extends EntityMetaField<T> {
 
-    private SimpleField(NavigableMap<ClientVersion, VersionedMapping<T, ?>> versions) {
+    private SimpleField(NavigableMap<ServerVersion, VersionedMapping<T, ?>> versions) {
         super(versions);
     }
 

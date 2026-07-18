@@ -1,10 +1,10 @@
 package dev.threeadd.packetentities.entity;
 
 import com.github.retrooper.packetevents.PacketEvents;
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.attribute.Attribute;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityType;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityTypes;
-import com.github.retrooper.packetevents.protocol.player.ClientVersion;
 import com.github.retrooper.packetevents.protocol.player.User;
 import com.github.retrooper.packetevents.protocol.sound.Sound;
 import com.github.retrooper.packetevents.protocol.sound.SoundCategory;
@@ -64,7 +64,7 @@ public class ProtocolEntity {
     private final int entityId;
     private final ProtocolObjectData protocolObjectData;
     private ProtocolEntityMeta meta;
-    private ClientVersion dataVersion;
+    private ServerVersion dataVersion;
     private volatile boolean isSpawned;
 
     ProtocolEntity(ProtocolEntityBuilder builder) {
@@ -80,7 +80,7 @@ public class ProtocolEntity {
         this.entityId = builder.entityId != null ? builder.entityId : PacketEntities.getPlatform().getEntityIdProvider().provide(builder.world);
         this.protocolObjectData = builder.protocolObjectData != null ? builder.protocolObjectData : new EmptyProtocolObjectData();
         this.meta = builder.meta != null ? builder.meta : new ProtocolEntityMeta(this.entityType);
-        this.dataVersion = builder.metaDataVersion != null ? builder.metaDataVersion : PacketEvents.getAPI().getServerManager().getVersion().toClientVersion();
+        this.dataVersion = builder.metaDataVersion != null ? builder.metaDataVersion : PacketEvents.getAPI().getServerManager().getVersion();
         this.worldStateManager = new EntityWorldStateManager(this, builder.location, builder.velocity, builder.verticalHeadRot != null ? builder.verticalHeadRot : 0, false, builder.world);
         this.attributesStateManager = new AttributesStateManager(this, builder.attributes != null ? builder.attributes : Collections.emptyList());
         this.extensionManager.attachAll(this);
@@ -192,7 +192,7 @@ public class ProtocolEntity {
      * @see ProtocolEntityMeta
      * @see ProtocolObjectData
      */
-    public ClientVersion getDataVersion() {
+    public ServerVersion getDataVersion() {
         return this.dataVersion;
     }
 
@@ -205,7 +205,7 @@ public class ProtocolEntity {
      * @see ProtocolEntityMeta
      * @see ProtocolObjectData
      */
-    public ProtocolEntity setDataVersion(ClientVersion version) {
+    public ProtocolEntity setDataVersion(ServerVersion version) {
         this.dataVersion = version;
         return this;
     }

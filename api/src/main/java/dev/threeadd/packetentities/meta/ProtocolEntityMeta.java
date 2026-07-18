@@ -1,5 +1,6 @@
 package dev.threeadd.packetentities.meta;
 
+import com.github.retrooper.packetevents.manager.server.ServerVersion;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityData;
 import com.github.retrooper.packetevents.protocol.entity.data.EntityMetadataProvider;
 import com.github.retrooper.packetevents.protocol.entity.type.EntityType;
@@ -178,7 +179,7 @@ public class ProtocolEntityMeta implements EntityMetadataProvider {
      * @param version the version of the data inside the packet (probably just your server version)
      * @return this meta for chaining
      */
-    public ProtocolEntityMeta setDataFromPacket(WrapperPlayServerEntityMetadata packet, ClientVersion version) {
+    public ProtocolEntityMeta setDataFromPacket(WrapperPlayServerEntityMetadata packet, ServerVersion version) {
         this.schema.applyPacketToStore(packet, this, version);
         return this;
     }
@@ -191,10 +192,11 @@ public class ProtocolEntityMeta implements EntityMetadataProvider {
      * @param version  the version to encode the data for
      * @return a new {@link WrapperPlayServerEntityMetadata} packet with the current data
      */
-    public WrapperPlayServerEntityMetadata createPacket(int entityId, ClientVersion version) {
-        return new WrapperPlayServerEntityMetadata(entityId, entityData(version));
+    public WrapperPlayServerEntityMetadata createPacket(int entityId, ServerVersion version) {
+        return new WrapperPlayServerEntityMetadata(entityId, entityData(version.toClientVersion())); // TODO, see below
     }
 
+    @SuppressWarnings("deprecation") // TODO inspect in packetevents, this arg should be ServerVersion?
     @Override
     public List<EntityData<?>> entityData(ClientVersion version) {
         List<EntityData<?>> resolved = new ArrayList<>(this.metadata.size());
@@ -202,7 +204,8 @@ public class ProtocolEntityMeta implements EntityMetadataProvider {
         for (Map.Entry<EntityMetaField<?>, Object> entry : this.metadata.entrySet()) {
             @SuppressWarnings("unchecked")
             EntityMetaField<Object> field = (EntityMetaField<Object>) entry.getKey();
-            EntityData<?> data = field.createData(version, entry.getValue());
+            EntityData<?> data = field.createData(version.toServerVersion(), entry.getValue());
+
             if (data != null) resolved.add(data);
         }
 

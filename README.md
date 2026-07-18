@@ -83,7 +83,7 @@ ProtocolEntity entity = ProtocolEntity.builder()
         })
         .uuid(uuid)
         .velocity(new Vector3d(1, 1, 1))
-        .version(PacketEvents.getAPI().getServerManager().getVersion().toClientVersion())
+        .version(PacketEvents.getAPI().getServerManager().getVersion())
         .buildAndSpawn(ProtocolWorld.of(loc.getWorld().getName()), loc);
 ```
 ### Meta
@@ -97,7 +97,7 @@ to packet
 ```java
 ProtocolEntityMeta metadata = /*...*/;
 int entityId = /*...*/;
-ClientVersion version = PacketEvents.getAPI().getServerManager().getVersion().toClientVersion();
+ServerVersion version = PacketEvents.getAPI().getServerManager().getVersion();
 WrapperPlayServerEntityMetadata metadataPacket = metadata.createPacket(entityId, version);
 ```
 
