@@ -134,7 +134,7 @@ public class EntityWorldStateManager {
         int newChunkZ = (int) Math.floor(newPos.getZ()) >> 4;
 
         if (oldChunkX != newChunkX || oldChunkZ != newChunkZ) {
-            PacketEntities.getAPI().getEntityManager().updateEntityChunk(this.entity, oldPos.getX(), oldPos.getZ(), newPos.getX(), newPos.getZ());
+            PacketEntities.getAPI().getEntityManager().updateEntityChunk(this.entity, oldPos, newPos);
         }
 
         this.worldState = position;

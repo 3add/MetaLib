@@ -1,5 +1,6 @@
 package dev.threeadd.packetentities.entity.world;
 
+import com.github.retrooper.packetevents.util.Vector3d;
 import dev.threeadd.packetentities.entity.ProtocolEntity;
 import dev.threeadd.packetentities.util.ChunkKeyUtils;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
@@ -19,8 +20,8 @@ public class EntityChunkTracker {
     private final Long2ObjectMap<Set<ProtocolEntity>> entitiesByChunk = new Long2ObjectOpenHashMap<>();
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
 
-    public void add(ProtocolEntity entity, double x, double z) {
-        long key = ChunkKeyUtils.toLongKey(x, z);
+    public void add(ProtocolEntity entity, Vector3d position) {
+        long key = ChunkKeyUtils.toLongKey(position);
         this.lock.writeLock().lock();
         try {
             this.entitiesByChunk.computeIfAbsent(key, k -> ConcurrentHashMap.newKeySet()).add(entity);
@@ -30,8 +31,8 @@ public class EntityChunkTracker {
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void remove(ProtocolEntity entity, double x, double z) {
-        long key = ChunkKeyUtils.toLongKey(x, z);
+    public void remove(ProtocolEntity entity, Vector3d position) {
+        long key = ChunkKeyUtils.toLongKey(position);
         this.lock.writeLock().lock();
         try {
             Set<ProtocolEntity> chunkEntities = this.entitiesByChunk.get(key);
@@ -44,9 +45,9 @@ public class EntityChunkTracker {
     }
 
     @SuppressWarnings("ConstantConditions")
-    public void update(ProtocolEntity entity, double oldLocX, double oldLocZ, double newLocX, double newLocZ) {
-        long oldKey = ChunkKeyUtils.toLongKey(oldLocX, oldLocZ);
-        long newKey = ChunkKeyUtils.toLongKey(newLocX, newLocZ);
+    public void update(ProtocolEntity entity, Vector3d oldPosition, Vector3d newPosition) {
+        long oldKey = ChunkKeyUtils.toLongKey(oldPosition);
+        long newKey = ChunkKeyUtils.toLongKey(newPosition);
 
         if (oldKey == newKey) return;
 

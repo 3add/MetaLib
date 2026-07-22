@@ -37,7 +37,7 @@ public class EntityManager {
         }
 
         Vector3d pos = entity.getTrackedEntity().getWorldState().currentPos();
-        this.chunkTracker.add(entity, pos.getX(), pos.getZ());
+        this.chunkTracker.add(entity, pos);
         this.entitiesByWorld
                 .computeIfAbsent(entity.getTrackedEntity().getWorldState().currentWorld(), w -> ConcurrentHashMap.newKeySet())
                 .add(entity);
@@ -54,7 +54,7 @@ public class EntityManager {
         }
 
         Vector3d pos = entity.getTrackedEntity().getWorldState().currentPos();
-        this.chunkTracker.remove(entity, pos.getX(), pos.getZ());
+        this.chunkTracker.remove(entity, pos);
 
         Set<ProtocolEntity> worldSet = this.entitiesByWorld.get(entity.getTrackedEntity().getWorldState().currentWorld());
         if (worldSet != null) {
@@ -139,8 +139,8 @@ public class EntityManager {
     }
 
     @ApiStatus.Internal
-    public void updateEntityChunk(ProtocolEntity entity, double oldX, double oldZ, double newX, double newZ) {
-        this.chunkTracker.update(entity, oldX, oldZ, newX, newZ);
+    public void updateEntityChunk(ProtocolEntity entity, Vector3d oldPosition, Vector3d newPosition) {
+        this.chunkTracker.update(entity, oldPosition, newPosition);
     }
 
     @ApiStatus.Internal
@@ -155,8 +155,8 @@ public class EntityManager {
         this.entitiesByWorld
                 .computeIfAbsent(newWorld, w -> ConcurrentHashMap.newKeySet())
                 .add(entity);
-        this.chunkTracker.remove(entity, oldPos.getX(), oldPos.getZ());
-        this.chunkTracker.add(entity, newPos.getX(), newPos.getZ());
+        this.chunkTracker.remove(entity, oldPos);
+        this.chunkTracker.add(entity, newPos);
     }
 
 }
