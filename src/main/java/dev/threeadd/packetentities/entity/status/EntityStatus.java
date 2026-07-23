@@ -22,7 +22,7 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Spawns honey block slide particles at the entity's feet.
          */
-        public static final EntityStatus HONEY_SLIDE = new EntityStatus(null, 53);
+        public static final EntityStatus HONEY_SLIDE = new EntityStatus(EntityTypes.ENTITY, 53);
 
     }
 
@@ -85,63 +85,63 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Plays the spear charge attack animation.
          */
-        public static final EntityStatus SPEAR_CHARGE = new EntityStatus(null, 2);
+        public static final EntityStatus SPEAR_CHARGE = new EntityStatus(EntityTypes.LIVINGENTITY, 2);
         /**
          * Plays the death sound and death animation.
          */
-        public static final EntityStatus DEATH = new EntityStatus(null, 3);
+        public static final EntityStatus DEATH = new EntityStatus(EntityTypes.LIVINGENTITY, 3);
         /**
          * Plays the shield block sound.
          */
-        public static final EntityStatus SHIELD_BLOCK = new EntityStatus(null, 29);
+        public static final EntityStatus SHIELD_BLOCK = new EntityStatus(EntityTypes.LIVINGENTITY, 29);
         /**
          * Plays the shield break sound.
          */
-        public static final EntityStatus SHIELD_BREAK = new EntityStatus(null, 30);
+        public static final EntityStatus SHIELD_BREAK = new EntityStatus(EntityTypes.LIVINGENTITY, 30);
         /**
          * Plays totem of undying animation and sound.
          */
-        public static final EntityStatus TOTEM_OF_UNDYING = new EntityStatus(null, 35);
+        public static final EntityStatus TOTEM_OF_UNDYING = new EntityStatus(EntityTypes.LIVINGENTITY, 35);
         /**
          * Spawns portal particles when teleporting (Chorus fruit/Enderman).
          */
-        public static final EntityStatus TELEPORT = new EntityStatus(null, 46);
+        public static final EntityStatus TELEPORT = new EntityStatus(EntityTypes.LIVINGENTITY, 46);
         /**
          * Plays equipment break sound and spawns break particles (main hand).
          */
-        public static final EntityStatus BREAK_MAINHAND = new EntityStatus(null, 47);
+        public static final EntityStatus BREAK_MAINHAND = new EntityStatus(EntityTypes.LIVINGENTITY, 47);
         /**
          * Plays equipment break sound and spawns break particles (off hand).
          */
-        public static final EntityStatus BREAK_OFFHAND = new EntityStatus(null, 48);
+        public static final EntityStatus BREAK_OFFHAND = new EntityStatus(EntityTypes.LIVINGENTITY, 48);
         /**
          * Plays equipment break sound and spawns break particles (head).
          */
-        public static final EntityStatus BREAK_HEAD = new EntityStatus(null, 49);
+        public static final EntityStatus BREAK_HEAD = new EntityStatus(EntityTypes.LIVINGENTITY, 49);
         /**
          * Plays equipment break sound and spawns break particles (chest).
          */
-        public static final EntityStatus BREAK_CHEST = new EntityStatus(null, 50);
+        public static final EntityStatus BREAK_CHEST = new EntityStatus(EntityTypes.LIVINGENTITY, 50);
         /**
          * Plays equipment break sound and spawns break particles (legs).
          */
-        public static final EntityStatus BREAK_LEGS = new EntityStatus(null, 51);
+        public static final EntityStatus BREAK_LEGS = new EntityStatus(EntityTypes.LIVINGENTITY, 51);
         /**
          * Plays equipment break sound and spawns break particles (feet).
          */
-        public static final EntityStatus BREAK_FEET = new EntityStatus(null, 52);
+        public static final EntityStatus BREAK_FEET = new EntityStatus(EntityTypes.LIVINGENTITY, 52);
         /**
          * Spawns honey block fall particles at the entity's feet.
          */
-        public static final EntityStatus HONEY_FALL = new EntityStatus(null, 54);
+        public static final EntityStatus HONEY_FALL = new EntityStatus(EntityTypes.LIVINGENTITY, 54);
         /**
          * Swaps the hand items of the entity.
          */
-        public static final EntityStatus SWAP_HANDS = new EntityStatus(null, 55);
+        public static final EntityStatus SWAP_HANDS = new EntityStatus(EntityTypes.LIVINGENTITY, 55);
         /**
          * Spawns death smoke particles.
          */
-        public static final EntityStatus DEATH_SMOKE = new EntityStatus(null, 60);
+        public static final EntityStatus DEATH_SMOKE = new EntityStatus(EntityTypes.LIVINGENTITY, 60);
 
     }
 
@@ -179,7 +179,7 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Spawns explosion particle (Silverfish enter/exit, Mob Spawner).
          */
-        public static final EntityStatus EXPLOSION_PARTICLE = new EntityStatus(null, 20);
+        public static final EntityStatus EXPLOSION_PARTICLE = new EntityStatus(EntityTypes.ABSTRACT_INSENTIENT, 20);
 
     }
 
@@ -188,7 +188,7 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Spawns "love mode" heart particles.
          */
-        public static final EntityStatus LOVE_MODE = new EntityStatus(null, 18);
+        public static final EntityStatus LOVE_MODE = new EntityStatus(EntityTypes.ABSTRACT_ANIMAL, 18);
 
     }
 
@@ -197,11 +197,11 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Spawns smoke particles (taming failed).
          */
-        public static final EntityStatus TAMING_FAILED = new EntityStatus(null, 6);
+        public static final EntityStatus TAMING_FAILED = new EntityStatus(EntityTypes.ABSTRACT_HORSE, 6);
         /**
          * Spawns heart particles (taming succeeded).
          */
-        public static final EntityStatus TAMING_SUCCEEDED = new EntityStatus(null, 7);
+        public static final EntityStatus TAMING_SUCCEEDED = new EntityStatus(EntityTypes.ABSTRACT_HORSE, 7);
 
     }
 
@@ -210,11 +210,11 @@ public record EntityStatus(EntityType boundType, int index) {
         /**
          * Spawns smoke particles (taming failed).
          */
-        public static final EntityStatus TAMING_FAILED = new EntityStatus(null, 6);
+        public static final EntityStatus TAMING_FAILED = new EntityStatus(EntityTypes.ABSTRACT_TAMEABLE_ANIMAL, 6);
         /**
          * Spawns heart particles (taming succeeded).
          */
-        public static final EntityStatus TAMING_SUCCEEDED = new EntityStatus(null, 7);
+        public static final EntityStatus TAMING_SUCCEEDED = new EntityStatus(EntityTypes.ABSTRACT_TAMEABLE_ANIMAL, 7);
 
     }
 

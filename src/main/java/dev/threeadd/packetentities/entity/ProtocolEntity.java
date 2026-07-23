@@ -34,7 +34,7 @@ import dev.threeadd.packetentities.entity.world.EntityWorldState;
 import dev.threeadd.packetentities.entity.world.EntityWorldStateManager;
 import dev.threeadd.packetentities.event.Event;
 import dev.threeadd.packetentities.event.EventBus;
-import dev.threeadd.packetentities.world.ProtocolWorld;
+import dev.threeadd.packetentities.platform.PlatformWorld;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnmodifiableView;
@@ -415,7 +415,7 @@ public class ProtocolEntity {
      * @param world the new world
      * @return this entity for chaining
      */
-    public ProtocolEntity setWorld(ProtocolWorld world) {
+    public ProtocolEntity setWorld(PlatformWorld world) {
         this.worldStateManager.setWorld(world);
         return this;
     }

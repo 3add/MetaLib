@@ -3,8 +3,6 @@ package dev.threeadd.packetentities.spigot;
 import dev.threeadd.packetentities.PacketEntitiesAPI;
 import dev.threeadd.packetentities.platform.Platform;
 import dev.threeadd.packetentities.setting.PacketEntitiesAPISettings;
-import org.bukkit.World;
-import org.bukkit.entity.Entity;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
@@ -12,9 +10,9 @@ import java.util.logging.Logger;
 public class PaperPacketEntitiesPlatform implements Platform {
 
     private final Logger logger;
-    private final dev.threeadd.packetentities.platform.EntityIdProvider<Entity> entityIdProvider;
-    private final dev.threeadd.packetentities.platform.WorldProvider<World> worldProvider;
-    private final dev.threeadd.packetentities.platform.TaskScheduler taskScheduler;
+    private final PaperEntityIdProvider entityIdProvider;
+    private final PaperWorldProvider worldProvider;
+    private final PaperTaskScheduler taskScheduler;
     private final PacketEntitiesAPI api;
 
     public PaperPacketEntitiesPlatform(JavaPlugin plugin, PacketEntitiesAPISettings settings) {
@@ -31,17 +29,17 @@ public class PaperPacketEntitiesPlatform implements Platform {
     }
 
     @Override
-    public dev.threeadd.packetentities.platform.EntityIdProvider<Entity> getEntityIdProvider() {
+    public PaperEntityIdProvider getEntityIdProvider() {
         return this.entityIdProvider;
     }
 
     @Override
-    public dev.threeadd.packetentities.platform.WorldProvider<World> getWorldProvider() {
+    public PaperWorldProvider getWorldProvider() {
         return this.worldProvider;
     }
 
     @Override
-    public dev.threeadd.packetentities.platform.TaskScheduler getTaskScheduler() {
+    public PaperTaskScheduler getTaskScheduler() {
         return this.taskScheduler;
     }
 

@@ -4,7 +4,7 @@ import com.github.retrooper.packetevents.protocol.entity.EntityPositionData;
 import com.github.retrooper.packetevents.protocol.world.Location;
 import com.github.retrooper.packetevents.util.Vector3d;
 import dev.threeadd.packetentities.entity.ProtocolEntity;
-import dev.threeadd.packetentities.world.ProtocolWorld;
+import dev.threeadd.packetentities.platform.PlatformWorld;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,8 +26,8 @@ public record EntityWorldState(
         @Nullable Boolean lastSyncedOnGround,
         @Nullable Vector3d currentVelocity,
         @Nullable Vector3d lastSyncedVelocity,
-        ProtocolWorld currentWorld,
-        @Nullable ProtocolWorld lastSyncedWorld
+        PlatformWorld currentWorld,
+        @Nullable PlatformWorld lastSyncedWorld
 ) {
 
     public @Nullable Vector3d velocity() {
@@ -114,7 +114,7 @@ public record EntityWorldState(
         );
     }
 
-    public EntityWorldState withWorld(ProtocolWorld world) {
+    public EntityWorldState withWorld(PlatformWorld world) {
         return new EntityWorldState(
                 this.currentPos, this.lastSyncedPos,
                 this.currentYaw, this.lastSyncedYaw,
@@ -137,7 +137,7 @@ public record EntityWorldState(
 
     public EntityWorldState syncWith(Vector3d newPos, float newYaw, float newPitch,
                                      float newHeadRot, boolean newIsOnGround,
-                                     ProtocolWorld newWorld) {
+                                     PlatformWorld newWorld) {
         return new EntityWorldState(
                 newPos, this.currentPos,
                 newYaw, this.currentYaw,

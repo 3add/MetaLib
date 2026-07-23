@@ -1,7 +1,7 @@
 package dev.threeadd.packetentities.entity;
 
 import com.github.retrooper.packetevents.util.Vector3d;
-import dev.threeadd.packetentities.world.ProtocolWorld;
+import dev.threeadd.packetentities.platform.PlatformWorld;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.jetbrains.annotations.ApiStatus;
@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class EntityManager {
 
-    private final Map<ProtocolWorld, Set<ProtocolEntity>> entitiesByWorld = new ConcurrentHashMap<>();
+    private final Map<PlatformWorld, Set<ProtocolEntity>> entitiesByWorld = new ConcurrentHashMap<>();
     private final Map<UUID, ProtocolEntity> entitiesByUuidMap = new ConcurrentHashMap<>();
 
     // handle with synchronized blocks, thread safety
@@ -91,7 +91,7 @@ public class EntityManager {
      * This predicate is O(1)
      *
      * @param uuid the {@link UUID} of the {@link ProtocolEntity} to retrieve
-     * @return {@link true} if the manager contains an entity with the provided uuid
+     * @return {@code true} if the manager contains an entity with the provided uuid
      */
     public boolean containsEntity(UUID uuid) {
         return this.entitiesByUuidMap.containsKey(uuid);
@@ -101,7 +101,7 @@ public class EntityManager {
      * This predicate is O(1)
      *
      * @param entityId the entity id of the {@link ProtocolEntity} to retrieve
-     * @return {@link true} if the manager contains an entity with the provided entity id
+     * @return {@code true} if the manager contains an entity with the provided entity id
      */
     public boolean containsEntity(int entityId) {
         synchronized (this.entitiesByIdMap) {
@@ -133,9 +133,9 @@ public class EntityManager {
      * This getter is O(1)
      *
      * @param world the world of the entities
-     * @return all the entities in the provided {@link ProtocolWorld}
+     * @return all the entities in the provided {@link PlatformWorld}
      */
-    public @UnmodifiableView Collection<ProtocolEntity> getEntitiesInWorld(ProtocolWorld world) {
+    public @UnmodifiableView Collection<ProtocolEntity> getEntitiesInWorld(PlatformWorld world) {
         Set<ProtocolEntity> set = this.entitiesByWorld.get(world);
         return set != null ? Collections.unmodifiableCollection(set) : Collections.emptySet();
     }
@@ -147,8 +147,8 @@ public class EntityManager {
 
     @ApiStatus.Internal
     public void updateEntityWorld(ProtocolEntity entity,
-                                  ProtocolWorld oldWorld, Vector3d oldPos,
-                                  ProtocolWorld newWorld, Vector3d newPos) {
+                                  PlatformWorld oldWorld, Vector3d oldPos,
+                                  PlatformWorld newWorld, Vector3d newPos) {
         Set<ProtocolEntity> oldSet = this.entitiesByWorld.get(oldWorld);
         if (oldSet != null) {
             oldSet.remove(entity);

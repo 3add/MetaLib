@@ -10,10 +10,10 @@ import dev.threeadd.packetentities.setting.PacketEntitiesAPISettings;
 
 import java.util.logging.Logger;
 
-public class VelocityPacketEntitiesPlatform implements Platform {
+public class VelocityPacketEntitiesPlatform implements Platform<Object, String> {
 
-    private final EntityIdProvider<?> entityIdProvider;
-    private final WorldProvider<?> worldProvider;
+    private final VelocityEntityIdProvider entityIdProvider;
+    private final VelocityWorldProvider worldProvider;
     private final TaskScheduler taskScheduler;
     private final PacketEntitiesAPI api;
 
@@ -30,12 +30,12 @@ public class VelocityPacketEntitiesPlatform implements Platform {
     }
 
     @Override
-    public EntityIdProvider<?> getEntityIdProvider() {
+    public VelocityEntityIdProvider getEntityIdProvider() {
         return this.entityIdProvider;
     }
 
     @Override
-    public WorldProvider<?> getWorldProvider() {
+    public VelocityWorldProvider getWorldProvider() {
         return this.worldProvider;
     }
 

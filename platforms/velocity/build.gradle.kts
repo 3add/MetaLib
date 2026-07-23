@@ -15,9 +15,9 @@ dependencies {
 }
 
 tasks.named("publish") {
-    dependsOn(":api:publish")
+    dependsOn(":publish")
 }
 
 tasks.named("publishToMavenLocal") {
-    dependsOn(":api:publishToMavenLocal")
+    dependsOn(":publishToMavenLocal")
 }
