@@ -45,35 +45,24 @@ public class JavadocGenerator {
         addVersionRangeDetail(details, node.getSupportedVersions());
         addWikiLinkDetail(details, node.getClassName(), displayName);
 
-        return buildJavadoc(CodeBlock.of("EntityMeta properties for the {@code $L} meta\n", displayName), details);
+        return CodeBlock.join(details, "\n<br>\n");
     }
 
     public CodeBlock generateFieldJavadoc(FieldNode field, ClassName viewClass) {
         List<CodeBlock> details = new ArrayList<>();
 
         if (viewClass != null) {
-            details.add(CodeBlock.of("<p>Wrapped by view: {@link $T}</p>\n", viewClass));
+            details.add(CodeBlock.of("Wrapped by view: {@link $T}", viewClass));
         }
         addVersionRangeDetail(details, field.getVersions().keySet());
 
-        return buildJavadoc(CodeBlock.of("Property representing the metadata field {@code $L}\n", field.getFieldName()), details);
-    }
-
-    private CodeBlock buildJavadoc(CodeBlock summary, List<CodeBlock> details) {
-        CodeBlock.Builder builder = CodeBlock.builder().add(summary);
-
-        if (!details.isEmpty()) {
-            builder.add("\n");
-            details.forEach(builder::add);
-        }
-
-        return builder.build();
+        return CodeBlock.join(details, "\n<br>\n");
     }
 
     private void addVersionRangeDetail(List<CodeBlock> details, Set<String> supportedVersions) {
         String range = formatVersionRange(supportedVersions);
         if (!range.isEmpty()) {
-            details.add(CodeBlock.of("<p>Supported Versions: {@code $L}</p>\n", range));
+            details.add(CodeBlock.of("Versions: {@code $L}", range));
         }
     }
 
@@ -85,7 +74,7 @@ public class JavadocGenerator {
             return;
         }
 
-        details.add(CodeBlock.of("<p><a href=\"" + WIKI_PAGE_URL + "#$L\">$L on the minecraft.wiki</a></p>\n", wikiAnchor, displayName));
+        details.add(CodeBlock.of("<a href=\"" + WIKI_PAGE_URL + "#$L\">$L on the minecraft.wiki</a>", wikiAnchor, displayName));
     }
 
     private String toWikiAnchor(String className) {
@@ -130,13 +119,13 @@ public class JavadocGenerator {
     }
 
     private String formatSingleRange(int startIdx, int endIdx) {
-        int maxIdx = this.allVersions.size() - 1;
-        boolean isEarliestVersion = startIdx == 0;
-        boolean isLatestVersion = endIdx == maxIdx;
+//        int maxIdx = this.allVersions.size() - 1;
+//        boolean isEarliestVersion = startIdx == 0;
+//        boolean isLatestVersion = endIdx == maxIdx;
 
-        if (isEarliestVersion && isLatestVersion) return "All Supported Versions";
-        if (isEarliestVersion) return this.allVersions.get(endIdx) + "-";
-        if (isLatestVersion) return this.allVersions.get(startIdx) + "+";
+//        if (isEarliestVersion && isLatestVersion) return "All Supported Versions";
+//        if (isEarliestVersion) return this.allVersions.get(endIdx) + "-";
+//        if (isLatestVersion) return this.allVersions.get(startIdx) + "+";
         if (startIdx == endIdx) return this.allVersions.get(startIdx);
 
         return this.allVersions.get(startIdx) + " - " + this.allVersions.get(endIdx);

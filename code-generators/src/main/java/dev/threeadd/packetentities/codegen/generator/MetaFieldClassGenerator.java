@@ -30,7 +30,8 @@ public class MetaFieldClassGenerator {
         TypeSpec.Builder outerClassBuilder = TypeSpec.classBuilder(GeneratedRefs.OUTER_CLASS_NAME)
                 .addAnnotation(GeneratedRefs.SUPPRESS_WARNINGS_UNUSED)
                 .addModifiers(Modifier.PUBLIC, Modifier.FINAL)
-                .addJavadoc("Container for all auto-generated packet entity metadata schemas and fields.\n");
+                .addJavadoc("Holds all {@link $T} and {@link $T}, grouped by their respective {@link $T}.\n",
+                        GeneratedRefs.FIELD_HOLDER, GeneratedRefs.METADATA_SCHEMA, GeneratedRefs.ENTITY_TYPES);
 
         for (EntityMetaNode node : sortedEntities) {
             FieldAliasMapper.mergeAliases(node);
@@ -78,10 +79,6 @@ public class MetaFieldClassGenerator {
 
         return FieldSpec.builder(GeneratedRefs.METADATA_SCHEMA, "SCHEMA")
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                .addJavadoc("""
-                        The {@link $T} containing this meta's properties, combined with all
-                        properties declared by its super classes.
-                        """, GeneratedRefs.METADATA_SCHEMA)
                 .initializer(initializer.build())
                 .build();
     }

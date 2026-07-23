@@ -13,26 +13,26 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Declares the set of {@link EntityMetaField}.
- * {@link IEntityMetaFieldHolder} uses this to group properties by entity type.
+ * {@link IEntityMetaFieldHolder} uses this to group fields by entity type.
  */
 public final class EntityMetaSchema {
 
     private final EntityType entityType;
 
     /**
-     * version specific index ordered properties cache for faster lookups
+     * version specific index ordered fields cache for faster lookups
      */
     private final Map<ServerVersion, EntityMetaField<?>[]> versionCache = new ConcurrentHashMap<>();
-    private final Set<EntityMetaField<?>> properties;
+    private final Set<EntityMetaField<?>> fields;
     /**
-     * highest metadata index of all properties stored or -1 if none of the properties have a version defined
+     * highest metadata index of all fields stored or -1 if none of the fields have a version defined
      */
     private final int maxKnownIndex;
 
-    private EntityMetaSchema(EntityType entityType, Set<EntityMetaField<?>> properties) {
+    private EntityMetaSchema(EntityType entityType, Set<EntityMetaField<?>> fields) {
         this.entityType = entityType;
-        this.properties = new HashSet<>(properties);
-        this.maxKnownIndex = properties.isEmpty() ? -1 : properties.stream()
+        this.fields = new HashSet<>(fields);
+        this.maxKnownIndex = fields.isEmpty() ? -1 : fields.stream()
                 .mapToInt(EntityMetaField::getMaxIndex)
                 .max()
                 .orElse(-1);
@@ -40,12 +40,12 @@ public final class EntityMetaSchema {
     }
 
     /**
-     * builds {@link #versionCache}, a version specific index ordered properties cache
+     * builds {@link #versionCache}, a version specific index ordered fields cache
      */
     private EntityMetaField<?>[] getOrBuildCache(ServerVersion version) {
         return this.versionCache.computeIfAbsent(version, v -> {
             EntityMetaField<?>[] lookup = new EntityMetaField<?>[this.maxKnownIndex + 1];
-            for (EntityMetaField<?> prop : this.properties) {
+            for (EntityMetaField<?> prop : this.fields) {
                 int index = prop.getIndex(v);
                 if (index >= 0 && index <= this.maxKnownIndex) {
                     lookup[index] = prop;
@@ -75,8 +75,8 @@ public final class EntityMetaSchema {
         }
     }
 
-    public Set<EntityMetaField<?>> getProperties() {
-        return this.properties;
+    public Set<EntityMetaField<?>> getFields() {
+        return this.fields;
     }
 
     public EntityType getBoundEntityType() {
@@ -84,7 +84,7 @@ public final class EntityMetaSchema {
     }
 
     public boolean contains(EntityMetaField<?> field) {
-        return this.properties.contains(field);
+        return this.fields.contains(field);
     }
 
     public static Builder builder(EntityType type) {
@@ -93,26 +93,21 @@ public final class EntityMetaSchema {
 
     public Builder extend(@Nullable EntityType type) {
         Builder builder = new Builder(type != null ? type : this.entityType);
-        builder.props.addAll(this.properties);
+        builder.props.addAll(this.fields);
         return builder;
     }
 
     public static final class Builder {
 
-        private EntityType entityType;
+        private final EntityType entityType;
         private final LinkedHashSet<EntityMetaField<?>> props = new LinkedHashSet<>();
 
         private Builder(EntityType type) {
             this.entityType = type;
         }
 
-        public Builder entityType(EntityType entityType) {
-            this.entityType = Objects.requireNonNull(entityType, "entityType must not be null");
-            return this;
-        }
-
-        public Builder add(EntityMetaField<?>... properties) {
-            this.props.addAll(Arrays.asList(properties));
+        public Builder add(EntityMetaField<?>... fields) {
+            this.props.addAll(Arrays.asList(fields));
             return this;
         }
 
