@@ -62,7 +62,7 @@ public class DataTypeMapper {
             case "OptionalInt", "Optional<Integer>" -> DataTypeMapping.optionalOf(Integer.class, "OPTIONAL_INT");
 
             // adventure
-            case "Component" -> DataTypeMapping.of(Component.class, "ADV_COMPONENT");
+            case "Component", "ITextComponent" -> DataTypeMapping.of(Component.class, "ADV_COMPONENT");
             case "Optional<Component>" -> DataTypeMapping.optionalOf(Component.class, "OPTIONAL_ADV_COMPONENT");
 
             // misc
@@ -73,7 +73,7 @@ public class DataTypeMapper {
             case "BlockState", "Optional<BlockState>" ->
                     DataTypeMapping.of(Integer.class, rawDataType.contains("Optional") ? "OPTIONAL_BLOCK_STATE" : "BLOCK_STATE");
             case "ResolvableProfile" -> DataTypeMapping.of(ItemProfile.class, "RESOLVABLE_PROFILE");
-            case "CompoundTag" -> DataTypeMapping.of(NBTCompound.class, "NBT");
+            case "CompoundTag", "NBTTagCompound" -> DataTypeMapping.of(NBTCompound.class, "NBT");
             case "ItemStack" -> DataTypeMapping.of(ItemStack.class, "ITEMSTACK");
             case "Optional<UUID>", "Optional<EntityReference<LivingEntity>>" ->
                     DataTypeMapping.optionalOf(UUID.class, "OPTIONAL_UUID");
@@ -88,7 +88,7 @@ public class DataTypeMapper {
             case "Sniffer.State" -> DataTypeMapping.of(SnifferState.class, "SNIFFER_STATE");
             case "VillagerData" -> DataTypeMapping.of(VillagerData.class, "VILLAGER_DATA");
             case "HumanoidArm" -> DataTypeMapping.of(HumanoidArm.class, "HUMANOID_ARM");
-            case "Direction" -> DataTypeMapping.of(BlockFace.class, "BLOCK_FACE");
+            case "Direction", "EnumFacing" -> DataTypeMapping.of(BlockFace.class, "BLOCK_FACE");
             case "CopperGolemState" -> DataTypeMapping.of(CopperGolemState.class, "COPPER_GOLEM_STATE");
             case "WeatheringCopper.WeatherState" ->
                     DataTypeMapping.of(WeatheringCopperState.class, "WEATHERING_COPPER_STATE");
